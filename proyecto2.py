@@ -53,7 +53,7 @@ def agregar_producto(inventario):
     inventario[nombre] = nuevo_producto
     print(f"Producto '{nombre}' agregado correctamente")
 
-def vender_producto(inventario):
+def vender_producto(inventario): #Registra la venta de unidades de un producto 
     
     nombre_producto = input("Ingrese el nombre del producto a vender:").strip().title()
     if nombre_producto in inventario:
@@ -71,24 +71,24 @@ def vender_producto(inventario):
         if producto.cantidad >= cantidad:
             producto.cantidad -= cantidad
             print(f"Se vendieron {cantidad} unidades de {nombre_producto}. Stock restante {producto.cantidad}")
-        else:
+        else: #stock insuficiente.
             print(f"No hay suficiente stock de {nombre_producto}. Stock disponible: {producto.cantidad}")
     else:
         print(f"No se encontró el producto {nombre_producto} en el inventario")
 
-def listar_inventario(inventario, umbral):
-    
+def listar_inventario(inventario, umbral): #Muestra la lista completa de productos, stock y precios
+
     if not inventario:
         print("\n -- Inventario Vacío --")
         return
     print("\n -- Inventario Actual -- ")
-    productos_con_alerta = 0
+    productos_con_alerta = 0 #Genera una alerta para los productos con stock bajo el umbral definido
     for nombre, producto in inventario.items():
         alerta = ""
-        if producto.cantidad < umbral:
+        if producto.cantidad < umbral: 
             alerta = " (Stock Bajo)"
             productos_con_alerta += 1
-        print(f"{nombre}: Stock: {producto.cantidad}, Precio: ${producto.precio:,.2f}{alerta}")
+        print(f"{nombre}: Stock: {producto.cantidad}, Precio: ${producto.precio: n}{alerta}")
 
     if productos_con_alerta > 0:
         print(f"\nHay {productos_con_alerta} productos con stock bajo el umbral de {umbral}.")
