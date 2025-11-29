@@ -115,7 +115,7 @@ def actualizar_stock(inventario): #Permite aumentar o disminuir el stock de un p
     else:
         print(f"Producto {nombre} no encontrado")
 
-def guardar_inventario(inventario):
+def guardar_inventario(inventario): #Guarda el estado actual del inventario en un archivo CSV = productos.csv
     
     datos_para_csv = []
     for nombre, producto in inventario.items():
@@ -123,8 +123,8 @@ def guardar_inventario(inventario):
             'nombre': producto.nombre,
             'precio': producto.precio,
             'cantidad': producto.cantidad
-        })
-    df_actualizado = pd.DataFrame(datos_para_csv)
+        }) #Escribe el DataFrame al archivo CSV, sin incluir el índice de Pandas.
+    df_actualizado = pd.DataFrame(datos_para_csv) #dataframe se utiliza para organizar, manipular y analizar datos de manera eficiente. 
     df_actualizado.to_csv("productos.csv", index=False)
     print("Inventario guardado exitosamente.")
 
