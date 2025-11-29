@@ -1,18 +1,18 @@
 import pandas as pd
 import os
 
-UMBRAL_STOCK_BAJO = 20  
+UMBRAL_STOCK_BAJO = 20 #define que el nivel de estock esta bajo a partir del numero ingresado se considera que le stock esta bajo 
 
 #Clase Producto
-class Producto:
+class Producto: #Se inicia cada producto con su nombre, precio y cantidad
     def __init__(self, nombre, precio, cantidad):
         self.nombre = nombre
         self.precio = precio
-        self.cantidad = int(cantidad)
+        self.cantidad = int(cantidad) #Se asegura que la cantidad se almacene como entero
 
-    def descuento(self):
+    def descuento(self): #Esto calcula y devuelve el precio del producto aplicando el 10% de descuento 
        
-        return self.precio * 0.9
+        return self.precio * 0.9 #Multiplica el precio por 0.9
 
 
 def ver_producto(inventario):
