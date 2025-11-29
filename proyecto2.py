@@ -15,9 +15,9 @@ class Producto:
         return self.precio * 0.9
 
 
-def ver_producto(inventario):
+def ver_producto(inventario): #Muestra los detalles de un producto que se necesite revisar
     nombre = input("Ingrese el nombre del producto a ver:").strip().title()
-    
+   #los prints Muestran 1 el nombre,2 el precio, 3 el stock  y 4 el descuento (si se uso el metodo descuento)
     if nombre in inventario:
         producto = inventario[nombre]
         
@@ -31,7 +31,7 @@ def ver_producto(inventario):
     else:
         print(f"Producto {nombre} no encontrado en el inventario")
 
-def agregar_producto(inventario):
+def agregar_producto(inventario): #Añade un producto nuevo al inventario
     
     nombre = input("Ingrese el nombre del producto: ").strip().title()
     if nombre in inventario:
@@ -48,7 +48,7 @@ def agregar_producto(inventario):
             break
         except ValueError:
             print("Error: Por favor, ingrese un número válido para precio y cantidad")
-
+#valida que el producto no exista y maneja el error si el usuario ingresa un precio o cantidad numerica erronea
     nuevo_producto = Producto(nombre, precio, cantidad)
     inventario[nombre] = nuevo_producto
     print(f"Producto '{nombre}' agregado correctamente")
@@ -114,6 +114,24 @@ def actualizar_stock(inventario):
                 print("Ingrese un número válido para el ajuste")
     else:
         print(f"Producto {nombre} no encontrado")
+def actualizar_precio(inventario):
+    nombre = input("Ingrese el nombre del producto para actualizar el precio")
+    if nombre in inventario:
+        producto = inventario[nombre]
+        print(f"Precio actual de {nombre}: ${producto.precio: n}")
+        while True:
+            try:
+                nuevo_precio = float(input("Ingrese el nuevo precio: $"))
+                if nuevo_precio < 0:
+                    print("El precio debe ser un valor positivo")
+                    continue
+                producto.precio = nuevo_precio
+                print(f"Precio de {nombre} actualizado Nuevo precio: ${nuevo_precio: n}")
+                return
+            except ValueError:
+                print("Error: Por favor, ingrese un numero valido")
+    else:
+            print(f"Producto {nombre} no encontrado")
 
 def guardar_inventario(inventario):
     
@@ -162,7 +180,8 @@ def main():
         print("3. Vender Producto")
         print("4. Listar Inventario")
         print("5. Actualizar Stock")
-        print("6. Salir")
+        print("6. Actualizar precio")
+        print("7. Salir")
 
         opcion = input("Seleccione una opción: ").strip()
 
@@ -177,6 +196,8 @@ def main():
         elif opcion == "5":
             actualizar_stock(inventario)
         elif opcion == "6":
+            actualizar_precio(inventario)
+        elif opcion == "7":
             guardar_inventario(inventario) 
             print("Saliendo del inventario")
             break 
