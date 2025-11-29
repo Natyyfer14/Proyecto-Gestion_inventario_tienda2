@@ -93,17 +93,17 @@ def listar_inventario(inventario, umbral): #Muestra la lista completa de product
     if productos_con_alerta > 0:
         print(f"\nHay {productos_con_alerta} productos con stock bajo el umbral de {umbral}.")
 
-def actualizar_stock(inventario):
+def actualizar_stock(inventario): #Permite aumentar o disminuir el stock de un producto existente
     
     nombre = input("Ingrese el nombre del producto a actualizar:").strip().title()
     if nombre in inventario:
         producto = inventario[nombre]
         print(f"Stock actual de {nombre}: {producto.cantidad}")
         while True:
-            try:
-                ajuste = int(input("Ingrese el ajuste de stock (+ para agregar, - para quitar):"))
+            try: 
+                ajuste = int(input("Ingrese el ajuste de stock (+ para agregar, - para quitar):")) # El ajuste puede ser positivo (agregar) o negativo (quitar)
                 nuevo_stock = producto.cantidad + ajuste
-                if nuevo_stock < 0:
+                if nuevo_stock < 0: # previene que el stock caiga por debajo de cero
                     print(f"Error: El stock ({nuevo_stock}) no puede ser negativo")
                     return
                 else:
