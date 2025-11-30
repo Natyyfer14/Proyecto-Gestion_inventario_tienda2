@@ -17,6 +17,8 @@ class Producto: #Se inicia cada producto con su nombre, precio y cantidad
 
 def ver_producto(inventario):
     nombre = input("Ingrese el nombre del producto a ver:").strip().title()
+    print(f"Buscando: '{nombre}'")
+    print(f"Productos disponibles: {list(inventario.keys())}")
     
     if nombre in inventario:
         producto = inventario[nombre]
